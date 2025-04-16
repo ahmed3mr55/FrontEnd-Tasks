@@ -11,7 +11,7 @@ import { TaskProvider } from "./Components/contexts/TaskContext";
 export default function Home() {
   const [openCreate, setOpenCreate] = useState(false);
   return (
-    <TaskProvider>
+
       <div className="p-1 flex flex-col  items-center ">
         <NavBar />
         <h1 className="text-2xl font-bold mb-4 uppercase">Todo List</h1>
@@ -24,6 +24,5 @@ export default function Home() {
         />
         {openCreate && <AddTask onClose={() => setOpenCreate(false)} />}
       </div>
-    </TaskProvider>
   );
 }

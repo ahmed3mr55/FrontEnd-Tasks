@@ -1,5 +1,6 @@
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import { TaskProvider } from "./Components/contexts/TaskContext";
 
 
 export const metadata = {
@@ -11,7 +12,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-white text-black">
+        <TaskProvider>
         {children}
+        </TaskProvider>
       </body>
     </html>
   );
