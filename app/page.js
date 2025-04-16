@@ -1,20 +1,17 @@
 "use client";
-import Cookies from "js-cookie";
 import React from "react";
-import { useEffect, useState } from "react";
-import io from "socket.io-client";
-import Task from "./Components/Task/Task";
+import { useState } from "react";
 import Search from "./Components/Search/Search";
 import List from "./Components/List/List";
 import AddTask from "./Components/AddTask/AddTask";
 import { Plus } from "lucide-react";
 import NavBar from "./Components/NavBar/NavBar";
-import { SocketProvider } from "./socketContext";
+import { TaskProvider } from "./Components/contexts/TaskContext";
 
 export default function Home() {
   const [openCreate, setOpenCreate] = useState(false);
   return (
-    <SocketProvider>
+    <TaskProvider>
       <div className="p-1 flex flex-col  items-center ">
         <NavBar />
         <h1 className="text-2xl font-bold mb-4 uppercase">Todo List</h1>
@@ -27,6 +24,6 @@ export default function Home() {
         />
         {openCreate && <AddTask onClose={() => setOpenCreate(false)} />}
       </div>
-    </SocketProvider>
+    </TaskProvider>
   );
 }

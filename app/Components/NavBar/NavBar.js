@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { useSocket } from "@/app/socketContext";
 import {
   Crown,
   Star,
@@ -14,11 +13,9 @@ import Link from "next/link";
 
 const NavBar = () => {
   const token = Cookies.get("token");
-  const userId = Cookies.get("userId");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
-  const socket = useSocket();
 
   const fetchUser = async () => {
     try {
@@ -59,28 +56,7 @@ const NavBar = () => {
   useEffect(() => {
     fetchUser();
 
-    if (socket) {
-      socket.emit("register-user", userId);
-      socket.on("task-updated", (data) => {
-        if (data.action === "create") {
-          setUser((prevUser) => ({
-            ...prevUser,
-            tasks: (prevUser?.tasks || 0) + 1,
-          }));
-        }
-        if (data.action === "delete") {
-          setUser((prevUser) => ({
-            ...prevUser,
-            tasks: (prevUser?.tasks || 0) - 1,
-          }));
-        }
-      });
-    }
-
-    return () => {
-      if (socket) socket.off("task-updated");
-    };
-  }, [userId, socket]);
+  },[]);
 
   return (
     <div className="w-full bg-blue-700 text-white p-4 shadow-md">

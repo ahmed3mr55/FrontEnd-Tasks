@@ -11,6 +11,12 @@ const page = async ({ params }) => {
     price = "650";
   } else if (plan === "max") {
     price = "750";
+  } else if (plan === "small") {
+    price = "15"
+  } else if (plan === "medium") {
+    price = "25"
+  } else if (plan === "large") {
+    price = "50"
   } else {
     return (
       <div className="w-full min-h-screen bg-[#5c539d] flex items-center justify-center">
