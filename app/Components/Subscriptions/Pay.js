@@ -146,7 +146,7 @@ const Pay = ({ plan }) => {
 
       <div className="w-96 bg-slate-800 p-6 rounded-md">
         <h2 className="text-white text-center mb-4">
-          Payment using Visa Card
+          Payment using Visa Card using <a className="text-blue-500 underline " href='https://front-money-cash.vercel.app'>App money</a>
         </h2>
         <form onSubmit={pay} className="space-y-4">
           <div>

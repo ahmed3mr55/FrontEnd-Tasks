@@ -73,10 +73,10 @@ const Update = ({ task, onClose }) => {
             />
           </div>
           <div className="flex justify-end gap-4">
-            <button onClick={onClose} type="button" className="px-4 py-2 bg-gray-500 rounded">
+            <button onClick={onClose} type="button" className="px-4 py-2 bg-gray-500 rounded cursor-pointer text-white hover:bg-gray-600 transition-colors">
               Cancel
             </button>
-            <button type="submit" disabled={loading} className="px-4 py-2 bg-blue-600 rounded">
+            <button type="submit" disabled={loading} className="px-4 py-2 bg-blue-600 rounded text-white cursor-pointer hover:bg-blue-700 transition-colors">
               {loading ? 'Updating...' : 'Apply'}
             </button>
           </div>
