@@ -16,7 +16,13 @@ const Task = () => {
 
   return (
     <div>
-      {tasks.map((task) => (
+      {tasks.length === 0 && (
+         <div className='flex flex-col justify-center items-center h-[400px]'>
+          <img src='/images/empty.png' alt='s'/>
+          <h1 className='text-2xl font-bold text-gray-500'>Empty</h1>
+         </div>
+      )
+      }{tasks.map((task) => (
         <div
           key={task._id}
           className="flex w-full items-center justify-between p-2 border-b border-gray-600"
@@ -81,6 +87,7 @@ const Task = () => {
           </div>
         </div>
       ))}
+
     </div>
   );
 };

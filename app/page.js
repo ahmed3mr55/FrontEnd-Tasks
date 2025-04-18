@@ -6,7 +6,6 @@ import List from "./Components/List/List";
 import AddTask from "./Components/AddTask/AddTask";
 import { Plus } from "lucide-react";
 import NavBar from "./Components/NavBar/NavBar";
-import { TaskProvider } from "./Components/contexts/TaskContext";
 
 export default function Home() {
   const [openCreate, setOpenCreate] = useState(false);

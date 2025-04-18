@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import Basic from "./Basic";
 import Pro from "./Pro";
 import Max from "./Max";
+import Packages from "./Packages";
 
 const page = () => {
   return (
@@ -19,6 +20,8 @@ const page = () => {
         <Pro />
         <Max />
       </div>
+      <h2 className="text-2xl font-bold text-white text-center py-5">Purchase additional packages</h2>
+        <Packages />
     </div>
   );
 };

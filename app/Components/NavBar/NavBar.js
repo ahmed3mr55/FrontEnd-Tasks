@@ -99,8 +99,8 @@ const NavBar = () => {
             <p className="font-medium">{user?.tasks || "0"}</p>
           </div>
           <div>
-            <p className="opacity-75">Completed</p>
-            <p className="font-medium">{user?.tasksCompleted || "0"}</p>
+            <p className="opacity-75">Available tasks</p>
+            <p className="font-medium">{user?.limitTasks || "0"}</p>
           </div>
           <div>
             <p className="opacity-75">Settings</p>
