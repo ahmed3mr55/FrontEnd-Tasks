@@ -84,7 +84,7 @@ const Page = () => {
           <a href="/forgot-password" className="text-blue-600 hover:underline">
             Forgot password?
           </a>
-          <a href="/signup" className="text-blue-600 hover:underline">
+          <a href="/auth/signup" className="text-blue-600 hover:underline">
             Create Account
           </a>
         </div>

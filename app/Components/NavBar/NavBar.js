@@ -10,12 +10,14 @@ import {
   CalendarCheck,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const NavBar = () => {
   const token = Cookies.get("token");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
+  const router = useRouter();
 
   const fetchUser = async () => {
     try {
@@ -55,8 +57,10 @@ const NavBar = () => {
 
   useEffect(() => {
     fetchUser();
-
-  },[]);
+    if (!token) {
+      router.push("/auth/login");
+    }
+  }, [token]);
 
   return (
     <div className="w-full bg-blue-700 text-white p-4 shadow-md">
@@ -91,7 +95,10 @@ const NavBar = () => {
               href="/Components/Subscriptions"
               className="font-medium underline"
             >
-              <CalendarCheck className="hover:text-blue-300 mx-auto" size={16} />
+              <CalendarCheck
+                className="hover:text-blue-300 mx-auto"
+                size={16}
+              />
             </Link>
           </div>
           <div>
