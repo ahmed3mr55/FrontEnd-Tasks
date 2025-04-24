@@ -1,10 +1,10 @@
 "use client";
-import React, { useState } from 'react';
-import Cookies from 'js-cookie';
-import { useTasks } from '../contexts/TaskContext';
-import Update from './Update';
-import Delete from './Delete';
-import { Pencil, Trash2 } from 'lucide-react';
+import React, { useState } from "react";
+import Cookies from "js-cookie";
+import { useTasks } from "../contexts/TaskContext";
+import Update from "./Update";
+import Delete from "./Delete";
+import { Pencil, Trash2 } from "lucide-react";
 
 const Task = () => {
   const { tasks, loading, error, updateTaskContext } = useTasks();
@@ -17,12 +17,12 @@ const Task = () => {
   return (
     <div>
       {tasks.length === 0 && (
-         <div className='flex flex-col justify-center items-center h-[400px]'>
-          <img src='/images/empty.png' alt='s'/>
-          <h1 className='text-2xl font-bold text-gray-500'>Empty</h1>
-         </div>
-      )
-      }{tasks.map((task) => (
+        <div className="flex flex-col justify-center items-center h-[400px]">
+          <img src="/images/empty.png" alt="s" />
+          <h1 className="text-2xl font-bold text-gray-500">Empty</h1>
+        </div>
+      )}
+      {tasks.map((task) => (
         <div
           key={task._id}
           className="flex w-full items-center justify-between p-2 border-b border-gray-600"
@@ -38,10 +38,10 @@ const Task = () => {
                     const res = await fetch(
                       `${process.env.NEXT_PUBLIC_DOMAIN}/api/task/status/${task._id}`,
                       {
-                        method: 'PUT',
+                        method: "PUT",
                         headers: {
-                          'Content-Type': 'application/json',
-                          Authorization: `Bearer ${Cookies.get('token')}`,
+                          "Content-Type": "application/json",
+                          Authorization: `Bearer ${Cookies.get("token")}`,
                         },
                         body: JSON.stringify({ status: !task.status }),
                       }
@@ -50,18 +50,20 @@ const Task = () => {
                     if (res.ok) {
                       updateTaskContext(data.task);
                     } else {
-                      console.error('Failed to update task status');
+                      console.error("Failed to update task status");
                     }
                   } catch (err) {
-                    console.error('Error updating task status:', err);
+                    console.error("Error updating task status:", err);
                   }
                 }}
               />
-              <h3 className={task.status ? 'line-through opacity-50' : ''}>
+              <h3 className={task.status ? "line-through opacity-50" : ""}>
                 {task.title}
               </h3>
             </div>
-            <p className={task.status ? 'line-through opacity-30' : 'opacity-60'}>
+            <p
+              className={task.status ? "line-through opacity-30" : "opacity-60"}
+            >
               {task.body}
             </p>
           </div>
@@ -87,7 +89,6 @@ const Task = () => {
           </div>
         </div>
       ))}
-
     </div>
   );
 };

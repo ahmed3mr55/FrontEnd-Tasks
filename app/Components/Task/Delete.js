@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from 'react';
-import Cookies from 'js-cookie';
-import { useTasks } from '../contexts/TaskContext';
+import React, { useState } from "react";
+import Cookies from "js-cookie";
+import { useTasks } from "../contexts/TaskContext";
 
 const Delete = ({ task, onClose }) => {
   const { deleteTaskContext } = useTasks();
@@ -14,10 +14,10 @@ const Delete = ({ task, onClose }) => {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_DOMAIN}/api/task/${task._id}`,
         {
-          method: 'DELETE',
+          method: "DELETE",
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${Cookies.get('token')}`,
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${Cookies.get("token")}`,
           },
         }
       );
@@ -26,10 +26,10 @@ const Delete = ({ task, onClose }) => {
         deleteTaskContext(task._id);
         onClose();
       } else {
-        setError(data.message || 'Failed to delete task');
+        setError(data.message || "Failed to delete task");
       }
     } catch (err) {
-      setError(err.message || 'An error occurred');
+      setError(err.message || "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -41,10 +41,15 @@ const Delete = ({ task, onClose }) => {
         <h2 className="mb-4 text-xl font-bold text-center text-red-600">
           Delete Task
         </h2>
-        <p className="mb-4 text-center">Are you sure you want to delete this task?</p>
+        <p className="mb-4 text-center">
+          Are you sure you want to delete this task?
+        </p>
         {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
         <div className="flex justify-center gap-4">
-          <button onClick={onClose} className="px-4 py-2 bg-gray-500 rounded hover:bg-gray-600 text-white cursor-pointer">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 bg-gray-500 rounded hover:bg-gray-600 text-white cursor-pointer"
+          >
             Cancel
           </button>
           <button
@@ -52,7 +57,7 @@ const Delete = ({ task, onClose }) => {
             disabled={loading}
             className="px-4 py-2 bg-red-600 rounded hover:bg-red-700 disabled:opacity-50 text-white cursor-pointer"
           >
-            {loading ? 'Deleting...' : 'Delete'}
+            {loading ? "Deleting..." : "Delete"}
           </button>
         </div>
       </div>

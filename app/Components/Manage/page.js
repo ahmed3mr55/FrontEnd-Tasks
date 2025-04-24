@@ -68,8 +68,8 @@ const Page = () => {
     router.push("/auth/login");
   };
   return (
-    <div className=" bg-gray-50 flex items-center justify-center p-4 flex-col">
-      <div className="w-full md:w-1/2 bg-white shadow-lg rounded-lg p-8 space-y-6">
+    <div className="bg-gray-50 flex items-center justify-center p-4 flex-col">
+      <div className="w-full md:w-1/2  rounded-lg p-8 space-y-6">
         {/* Header */}
         <header className="flex justify-between items-center border-b pb-4">
           <div>
@@ -133,7 +133,6 @@ const Page = () => {
               Logout <LogOut size={20} />
             </button>
           </div>
-          <p className="mt-4 text-sm text-gray-500">© 2025 Ahmed Amr</p>
         </footer>
       </div>
       <Update />

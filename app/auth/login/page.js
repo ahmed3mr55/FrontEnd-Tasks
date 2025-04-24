@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from 'react';
-import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const router = useRouter();
@@ -10,22 +10,28 @@ const Page = () => {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const login = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_DOMAIN}/api/auth/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       const data = await res.json();
       if (res.ok) {
         Cookies.set("token", data.token);
-        Cookies.set("userId", data.userId);
-        router.push("/");
+        setSuccess(true);
+        setTimeout(() => {
+          router.push("/");
+        }, 1000);
       } else {
         setError(data.message || "Failed to login");
       }
@@ -40,9 +46,10 @@ const Page = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
-        {error && (
-          <p className="text-red-500 text-center mb-4">
-            {error}
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        {success && (
+          <p className="text-green-500 text-center bg-green-100 p-2 rounded  mb-4">
+            Login successful! Redirecting...
           </p>
         )}
         <form onSubmit={login} className="space-y-4">

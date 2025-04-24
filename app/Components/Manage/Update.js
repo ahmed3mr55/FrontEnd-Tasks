@@ -90,10 +90,10 @@ const Update = () => {
   }, [done, error]);
 
   return (
-    <form className='flex flex-col p-2 mt-3' onSubmit={update}>
+    <form className='flex flex-col' onSubmit={update}>
         {error && <p className='text-red-500'>{error}</p>}
         {done && <p className='text-green-500'>{done}</p>}
-      <div className='flex flex-row gap-2'>
+      <div className='flex flex-row gap-1 '>
         <div className='flex flex-col'>
           <label htmlFor="firstName">First Name</label>
           <input
@@ -116,7 +116,7 @@ const Update = () => {
         </div>
       </div>
 
-      <div className='flex flex-row gap-2'>
+      <div className='flex flex-row gap-1'>
         <div className='flex flex-col'>
           <label htmlFor='email'>Email</label>
           <input
@@ -138,7 +138,7 @@ const Update = () => {
         </div>
       </div>
 
-      <div className='flex flex-row gap-2'>
+      <div className='flex flex-row'>
         <div className='flex flex-col'>
           <label htmlFor='plan'>Plan</label>
           <input
@@ -149,7 +149,7 @@ const Update = () => {
           />
         </div>
       </div>
-      <button type='submit' className='bg-blue-500 text-white p-2 my-3 cursor-pointer'>Update</button>
+      <button disabled={loading} type='submit' className='bg-blue-500 text-white p-2 my-3 cursor-pointer'>Update</button>
     </form>
   );
 };

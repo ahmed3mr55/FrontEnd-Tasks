@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from 'react';
-import Cookies from 'js-cookie';
-import { useTasks } from '../contexts/TaskContext';
+import React, { useState } from "react";
+import Cookies from "js-cookie";
+import { useTasks } from "../contexts/TaskContext";
 
 const Update = ({ task, onClose }) => {
   const { updateTaskContext } = useTasks();
@@ -9,6 +9,8 @@ const Update = ({ task, onClose }) => {
   const [description, setDescription] = useState(task.body);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const maxDescriptionLength = 100;
+  const remaining = maxDescriptionLength - description.length;
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -17,10 +19,10 @@ const Update = ({ task, onClose }) => {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_DOMAIN}/api/task/${task._id}`,
         {
-          method: 'PUT',
+          method: "PUT",
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${Cookies.get('token')}`,
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${Cookies.get("token")}`,
           },
           body: JSON.stringify({ title, body: description }),
         }
@@ -30,10 +32,10 @@ const Update = ({ task, onClose }) => {
         updateTaskContext(data.task);
         onClose();
       } else {
-        setError(data.message || 'Failed to update task');
+        setError(data.message || "Failed to update task");
       }
     } catch (err) {
-      setError(err.message || 'An error occurred');
+      setError(err.message || "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -70,14 +72,26 @@ const Update = ({ task, onClose }) => {
               onChange={(e) => setDescription(e.target.value)}
               required
               className="w-full px-3 py-2 border rounded"
+              maxLength={maxDescriptionLength}
             />
+            <p className={`mt-1 text-sm ${remaining === 0 ? "text-red-500" : "text-gray-500"}`}>
+              {remaining} characters remaining
+            </p>
           </div>
           <div className="flex justify-end gap-4">
-            <button onClick={onClose} type="button" className="px-4 py-2 bg-gray-500 rounded cursor-pointer text-white hover:bg-gray-600 transition-colors">
+            <button
+              onClick={onClose}
+              type="button"
+              className="px-4 py-2 bg-gray-500 rounded cursor-pointer text-white hover:bg-gray-600 transition-colors"
+            >
               Cancel
             </button>
-            <button type="submit" disabled={loading} className="px-4 py-2 bg-blue-600 rounded text-white cursor-pointer hover:bg-blue-700 transition-colors">
-              {loading ? 'Updating...' : 'Apply'}
+            <button
+              type="submit"
+              disabled={loading}
+              className="px-4 py-2 bg-blue-600 rounded text-white cursor-pointer hover:bg-blue-700 transition-colors"
+            >
+              {loading ? "Updating..." : "Apply"}
             </button>
           </div>
         </form>
