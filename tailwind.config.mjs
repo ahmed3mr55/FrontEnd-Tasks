@@ -1,4 +1,4 @@
-// بدّل export default إلى module.exports
+// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -7,13 +7,12 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    screens: {        // حطّ screens على مستوى theme، مش داخل extend
+    screens: {
       xs: "300px",
       sm: "750px",
-      md: "750px",
-      lg: "976px",
-      xl: "1280px",   // ضيفه لو حابب
-      "2xl": "1536px",
+      md: "976px",
+      lg: "1280px",
+      xl: "1536px",
     },
     extend: {},
   },
