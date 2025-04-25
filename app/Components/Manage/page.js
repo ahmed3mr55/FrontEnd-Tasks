@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { LogOut } from "lucide-react";
+import CodeRedeem from "../GiftCode/CodeRedeem";
 
 const Page = () => {
   const token = Cookies.get("token");
@@ -133,6 +134,10 @@ const Page = () => {
               Logout <LogOut size={20} />
             </button>
           </div>
+          <p className="text-white mt-3 p-2 bg-gray-400 rounded-md">
+            Redeem Code Gift
+          </p>
+          <CodeRedeem />
         </footer>
       </div>
       <Update />
