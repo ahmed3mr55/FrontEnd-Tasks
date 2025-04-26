@@ -7,13 +7,6 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    screens: {
-      xs: "300px",
-      sm: "750px",
-      md: "976px",
-      lg: "1280px",
-      xl: "1536px",
-    },
     extend: {},
   },
   darkMode: "class",

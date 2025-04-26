@@ -83,7 +83,7 @@ export default function CodeDetails() {
     <>
       {showModal && details && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-          <div className="bg-white p-6 rounded max-w-md w-full space-y-4">
+          <div className="bg-white p-6 rounded max-w-md w-full space-y-4 shadow-lg">
             <h2 className="text-xl font-bold">Code Details</h2>
             <p>
               <strong>Code:</strong> {details.code}
@@ -132,7 +132,7 @@ export default function CodeDetails() {
         <label htmlFor="code" className="block font-medium">
           Enter Code
         </label>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <input
             id="code"
             type="text"

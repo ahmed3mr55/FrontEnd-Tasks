@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { LogOut } from "lucide-react";
 import CodeRedeem from "../GiftCode/CodeRedeem";
+import CreateCode from "../GiftCode/Create";
 
 const Page = () => {
   const token = Cookies.get("token");
@@ -138,6 +139,13 @@ const Page = () => {
             Redeem Code Gift
           </p>
           <CodeRedeem />
+          <p
+            onClick={() => router.push("/Components/GiftCode")}
+            className="text-gray-500 text-sm underline cursor-pointer"
+          >
+            Show more Codes
+          </p>
+          {user?.isAdmin && <CreateCode />}
         </footer>
       </div>
       <Update />
